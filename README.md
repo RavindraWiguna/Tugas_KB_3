@@ -1,0 +1,2 @@
+# Tugas_KB_3
+Simpan-Buah Rambutantan, tanduk ular mati ti, tikus main di loteng teng. tengok ayam ber telur lur, luri jalnanya laju ju. jual minyak wangi ngi, ngitung duit seperak rak. rakus makanan babi bi, bintang beribu ribu bu. bulan hanya satu tu, tulis di papan ambon bon, botak kepala ali li, lihat kebun kudaaa, penuh dengan buaya, adaa yang putikus dan ada yang merayap, setiap harimau, ku siram semut merah, mawar melatikus, semuanya indomi
