@@ -16,8 +16,9 @@ BLUE = 4
 GREEN = 5
 
 class Cube:
-    def __init__(self, state="WWWWOOOOGGGGRRRRBBBBYYYY"):
+    def __init__(self, state="123456789ABCDEFGHIJKLMNO"):
         #saved as ulfrbd
+        #WWWWOOOOGGGGRRRRBBBBYYYY
         self.state = state # a string og 24 char
         self.h = 0
         self.g = 0
@@ -133,6 +134,18 @@ class Cube:
         state[FRONT+1], state[FRONT+3] = state[DOWN+1], state[DOWN+3]
         state[DOWN+1], state[DOWN+3] = b2, b0
         # convert it back to string
+        self.state = "".join(state)
+
+    def rightCCW(self):
+        self.rotateSideCCW(RIGHT)
+        # convert from string to a list, because a string is immutable
+        state = list(self.state)
+        b0, b2 = state[BACK], state[BACK+2]
+        state[BACK], state[BACK+2] = state[DOWN+3], state[DOWN+1]
+        state[DOWN+1], state[DOWN+3] = state[FRONT+1], state[FRONT+3]
+        state[FRONT+1], state[FRONT+3] = state[UP+1], state[UP+3]
+        state[UP+1], state[UP+3] = b2, b0
+        # convert it back to string
         self.state = "".join(state)        
 
     def move(self, move):
@@ -156,20 +169,6 @@ class Cube:
 
 
 mycube = Cube()
-mycube.rightCW()
-# mycube.printState() #aman
 
-mycube.downCCW()
-# mycube.printState() #aman
-mycube.upCCW()
-# mycube.printState() #anab
-mycube.frontCW()
-# mycube.printState() # tidak
-mycube.downCW()
-# mycube.printState() # aman
-mycube.upCW()
-# mycube.printState() # aman
-# mycube.printState()
-mycube.frontCCW()
 mycube.printState()
 # mycube.printState()
