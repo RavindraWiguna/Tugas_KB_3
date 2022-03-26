@@ -106,7 +106,7 @@ def greedy_best_first_search(start_cube, goal_cube):
 
 def main():
     # create start and goal cube
-    start_cube = Cube("GOOYWBWOYBWWRYOGGRRRGBBY")
+    start_cube = Cube("BBYRRGGYOYBGBOWGWWRWOROY")
     goal_cube = Cube() # awal is: WWWWOOOOGGGGRRRRBBBBYYYY
     print("START CUBE")
     start_cube.printState()
