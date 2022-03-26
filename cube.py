@@ -7,12 +7,12 @@ UP = 16
 DOWN = 20 #START INDEX OF EACH SIDE
 
 # COLOR CODE
-RED = 1
-ORANGE = 2
-GREEN = 3
+WHITE = 0
+YELLOW = 1
+ORANGE  = 2
+RED = 3
 BLUE = 4
-YELLOW = 5
-WHITE = 6
+GREEN = 5
 
 class Cube:
     def __init__(self, state):
@@ -96,6 +96,22 @@ class Cube:
         state[UP], state[UP+1] = tright0, tright1
         # convert it back to string
         self.state = str(state)               
+
+    def downCW(self):
+        # convert from string to a list, because a string is immutable
+        state = list(self.state)
+        # rotate r01<-u01<-l01<-d01<-r01
+        tright0, tright1= state[RIGHT], state[RIGHT+1]
+        # change r01 to u01
+        state[RIGHT], state[RIGHT+1] = state[UP], state[UP+1]
+        # change u01 t0 l01
+        state[UP], state[UP+1] = state[LEFT], state[LEFT+1]
+        # change l01 to d01
+        state[LEFT], state[LEFT+1] = state[DOWN], state[DOWN+1]
+        # change d01 to r01
+        state[UP], state[UP+1] = tright0, tright1
+        # convert it back to string
+        self.state = str(state) 
 
     def move(self, move):
         if(move == 'F'):
