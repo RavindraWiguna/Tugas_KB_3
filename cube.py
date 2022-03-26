@@ -182,6 +182,18 @@ class Cube:
         state[UP], state[UP+2] = state[BACK+3], state[BACK+1]
         state[BACK+3], state[BACK+1] = d0, d2
         # convert it back to string
+        self.state = "".join(state)
+
+    def leftCCW(self):
+        self.rotateSideCCW(LEFT)
+        # convert from string to a list, because a string is immutable
+        state = list(self.state)
+        d0, d2 = state[DOWN], state[DOWN+2]
+        state[DOWN], state[DOWN+2] = state[BACK+3], state[BACK+1]
+        state[BACK+3], state[BACK+1] = state[UP], state[UP+2]
+        state[UP], state[UP+2] = state[FRONT], state[FRONT+2]
+        state[FRONT], state[FRONT+2] = d0, d2
+        # convert it back to string
         self.state = "".join(state)        
 
     def move(self, move):
@@ -215,7 +227,7 @@ mycube.frontCCW()
 mycube.rightCCW()
 mycube.upCCW()
 mycube.backCCW()
-# mycube.leftCW
+mycube.leftCCW()
 mycube.downCCW()
 mycube.printState()
 # mycube.printState()
