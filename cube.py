@@ -15,7 +15,7 @@ BLUE = 4
 GREEN = 5
 
 class Cube:
-    def __init__(self, state):
+    def __init__(self, state="WWWWYYYYOOOORRRRBBBBGGGG"):
         #F1234B1234R1234L1234U1234D1234
         # WWWWYYYYOOOORRRRBBBBGGGG
         self.state = state # a string og 24 char
@@ -117,6 +117,20 @@ class Cube:
         if(move == 'F'):
             self.frontCW()
 
+    def printState(self):
+        print(f'        +---+---+')
+        print(f'        | {self.state[FRONT]} | {self.state[FRONT+1]} |')
+        print(f'        +---+---+')
+        print(f'        | {self.state[FRONT+2]} | {self.state[FRONT+3]} |')
+        print(f'+---+---+---+---+---+---+---+---+')
+        print(f'| {self.state[RIGHT]} | {self.state[RIGHT+1]} | {self.state[DOWN]} | {self.state[DOWN+1]} | {self.state[LEFT]} | {self.state[LEFT+1]} | {self.state[UP]} | {self.state[UP+1]} |')
+        print(f'+---+---+---+---+---+---+---+---+')
+        print(f'| {self.state[RIGHT+2]} | {self.state[RIGHT+3]} | {self.state[DOWN+2]} | {self.state[DOWN+3]} | {self.state[LEFT+2]} | {self.state[LEFT+3]} | {self.state[UP+2]} | {self.state[UP+3]} |')
+        print(f'+---+---+---+---+---+---+---+---+')
+        print(f'        | {self.state[BACK]} | {self.state[BACK+1]} |')
+        print(f'        +---+---+')
+        print(f'        | {self.state[BACK+2]} | {self.state[BACK+3]} |')
+        print(f'        +---+---+')  
 
-
-# mycube = Cube()
+mycube = Cube()
+mycube.printState()
