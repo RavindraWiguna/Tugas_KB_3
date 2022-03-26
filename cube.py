@@ -123,6 +123,18 @@ class Cube:
         # convert it back to string
         self.state = "".join(state)
 
+    def rightCW(self):
+        self.rotateSideCW(RIGHT)
+        # convert from string to a list, because a string is immutable
+        state = list(self.state)
+        b0, b2 = state[BACK], state[BACK+2]
+        state[BACK], state[BACK+2] = state[UP+3], state[UP+1]
+        state[UP+1], state[UP+3] = state[FRONT+1], state[FRONT+3]
+        state[FRONT+1], state[FRONT+3] = state[DOWN+1], state[DOWN+3]
+        state[DOWN+1], state[DOWN+3] = b2, b0
+        # convert it back to string
+        self.state = "".join(state)        
+
     def move(self, move):
         if(move == 'F'):
             self.frontCW()
@@ -145,10 +157,18 @@ class Cube:
 
 mycube = Cube()
 mycube.frontCW()
+mycube.printState()
 # mycube.frontCCW()
 mycube.upCW()
+mycube.printState()
 mycube.frontCCW()
+mycube.printState()
 mycube.downCCW()
+mycube.printState()
 mycube.upCCW()
+mycube.printState()
 mycube.downCW()
 mycube.printState()
+mycube.rightCW()
+mycube.printState()
+# mycube.printState()
