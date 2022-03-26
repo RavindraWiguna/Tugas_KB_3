@@ -1,16 +1,18 @@
+from cube import Cube
+
 def readfile(filename):
     f = open(filename)
     data = f.read()
     return data
 
-CB_DP = {
-    "W": ((0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1)),
-    "O": ((1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)),
-    "G": ((2, 0, 0), (2, 0, 1), (2, 1, 0), (2, 1, 1)),
-    "R": ((3, 0, 0), (3, 0, 1), (3, 1, 0), (3, 1, 1)),
-    "B": ((4, 0, 0), (4, 0, 1), (4, 1, 0), (4, 1, 1)),
-    "Y": ((5, 0, 0), (5, 0, 1), (5, 1, 0), (5, 1, 1)),
-}
+# CB_DP = {
+#     "W": ((0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1)),
+#     "O": ((1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)),
+#     "G": ((2, 0, 0), (2, 0, 1), (2, 1, 0), (2, 1, 1)),
+#     "R": ((3, 0, 0), (3, 0, 1), (3, 1, 0), (3, 1, 1)),
+#     "B": ((4, 0, 0), (4, 0, 1), (4, 1, 0), (4, 1, 1)),
+#     "Y": ((5, 0, 0), (5, 0, 1), (5, 1, 0), (5, 1, 1)),
+# }
 
 SIDE_DP = {
     "W": 0,
@@ -48,3 +50,44 @@ def get_heuristic_val(cubic_state):
 
 # print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
 # print(get_heuristic_val("GOOYWBWOYBWWRYOGGRRRGBBY"))
+
+def create_cube_state(cube_state, move):
+    cube = Cube(cube_state)
+    if(move == 'F'):
+        cube.frontCW()
+    elif(move == 'R'):
+        cube.rightCW()
+    elif(move == 'U'):
+        cube.upCW()
+    elif(move == 'B'):
+        cube.backCW()
+    elif(move == 'L'):
+        cube.leftCW()
+    elif(move == 'D'):
+        cube.downCW()
+    elif(move == 'FC'):
+        cube.frontCCW()
+    elif(move == 'RC'):
+        cube.rightCCW()
+    elif(move == 'UC'):
+        cube.upCCW()
+    elif(move == 'BC'):
+        cube.backCCW()
+    elif(move == 'LC'):
+        cube.leftCCW()
+    elif(move == 'DC'):
+        cube.downCCW()
+    else:
+        raise ValueError
+    return cube.state
+
+def reconstruct_path(finish_state, cameFrom: dict):
+    path = []
+    cur_state = finish_state
+    while (cur_state):
+        # print(cur_state)
+        cur_state, move = cameFrom[cur_state]
+        # create_cube_state(Cube(cur_state), )
+        path.append(move)
+        # print(f'{move}, ', end="")
+    return path[::-1] #reverse the path, and return it

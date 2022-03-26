@@ -1,0 +1,35 @@
+START CUBE
+        +---+---+
+        | B | B |
+        +---+---+
+        | Y | R |
++---+---+---+---+---+---+---+---+
+| R | G | O | Y | B | O | W | W |
++---+---+---+---+---+---+---+---+
+| G | Y | B | G | W | G | R | W |
++---+---+---+---+---+---+---+---+
+        | O | R |
+        +---+---+
+        | O | Y |
+        +---+---+
+GOAL CUBE
+        +---+---+
+        | W | W |
+        +---+---+
+        | W | W |
++---+---+---+---+---+---+---+---+
+| O | O | G | G | R | R | B | B |
++---+---+---+---+---+---+---+---+
+| O | O | G | G | R | R | B | B |
++---+---+---+---+---+---+---+---+
+        | Y | Y |
+        +---+---+
+        | Y | Y |
+        +---+---+
+Searching Solution using A* Algorithm...
+HEY, Found the goal!
+A star elapsed time: 0.7671455| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]
+Total node opened: 57658
+Total move: 7 (Without root)
+Path:
+['.', 'UC', 'LC', 'FC', 'R', 'FC', 'RC', 'BC']

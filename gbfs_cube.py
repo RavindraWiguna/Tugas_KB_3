@@ -7,48 +7,6 @@ import os
 #pseudocode reference: 
 #modifitying A star with pseudocode from: https://en.wikipedia.org/wiki/Best-first_search
 
-def reconstruct_path(finish_state, cameFrom: dict):
-    path = []
-    cur_state = finish_state
-    while (cur_state):
-        # print(cur_state)
-        cur_state, move = cameFrom[cur_state]
-        # create_cube_state(Cube(cur_state), )
-        path.append(move)
-        # print(f'{move}, ', end="")
-    return path[::-1] #reverse the path, and return it
-
-def create_cube_state(cube_state, move):
-    cube = Cube(cube_state)
-    if(move == 'F'):
-        cube.frontCW()
-    elif(move == 'R'):
-        cube.rightCW()
-    elif(move == 'U'):
-        cube.upCW()
-    elif(move == 'B'):
-        cube.backCW()
-    elif(move == 'L'):
-        cube.leftCW()
-    elif(move == 'D'):
-        cube.downCW()
-    elif(move == 'FC'):
-        cube.frontCCW()
-    elif(move == 'RC'):
-        cube.rightCCW()
-    elif(move == 'UC'):
-        cube.upCCW()
-    elif(move == 'BC'):
-        cube.backCCW()
-    elif(move == 'LC'):
-        cube.leftCCW()
-    elif(move == 'DC'):
-        cube.downCCW()
-    else:
-        raise ValueError
-    return cube.state
-
-
 #GLOBAL POSSIBLE MOVE
 POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 def greedy_best_first_search(start_cube, goal_cube):
