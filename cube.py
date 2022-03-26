@@ -56,9 +56,9 @@ class Cube:
         # convert from string to a list, because a string is immutable
         state = list(self.state)
         u2, u3 = state[UP+2], state[UP+3]
-        state[UP+2], state[UP+3] = state[LEFT+1], state[LEFT+3]
+        state[UP+2], state[UP+3] = state[LEFT+3], state[LEFT+1]
         state[LEFT+1], state[LEFT+3] = state[DOWN], state[DOWN+1]
-        state[DOWN], state[DOWN+1] = state[RIGHT], state[RIGHT+2]
+        state[DOWN], state[DOWN+1] = state[RIGHT+2], state[RIGHT]
         state[RIGHT], state[RIGHT+2] = u2, u3
         # convert it back to string
         self.state = "".join(state)
@@ -69,7 +69,7 @@ class Cube:
         state = list(self.state)
         u2, u3 = state[UP+2], state[UP+3]
         state[UP+2], state[UP+3] = state[RIGHT], state[RIGHT+2]
-        state[RIGHT], state[RIGHT+2] = state[DOWN], state[DOWN+1]
+        state[RIGHT], state[RIGHT+2] = state[DOWN+1], state[DOWN]
         state[DOWN], state[DOWN+1] = state[LEFT+1], state[LEFT+3]
         state[LEFT+1], state[LEFT+3] = u3, u2
         # convert it back to string
@@ -156,19 +156,20 @@ class Cube:
 
 
 mycube = Cube()
-mycube.frontCW()
-mycube.printState()
-# mycube.frontCCW()
-mycube.upCW()
-mycube.printState()
-mycube.frontCCW()
-mycube.printState()
-mycube.downCCW()
-mycube.printState()
-mycube.upCCW()
-mycube.printState()
-mycube.downCW()
-mycube.printState()
 mycube.rightCW()
+# mycube.printState() #aman
+
+mycube.downCCW()
+# mycube.printState() #aman
+mycube.upCCW()
+# mycube.printState() #anab
+mycube.frontCW()
+# mycube.printState() # tidak
+mycube.downCW()
+# mycube.printState() # aman
+mycube.upCW()
+# mycube.printState() # aman
+# mycube.printState()
+mycube.frontCCW()
 mycube.printState()
 # mycube.printState()
