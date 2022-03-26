@@ -71,7 +71,7 @@ class Cube:
         state[UP+2], state[UP+3] = state[RIGHT], state[RIGHT+2]
         state[RIGHT], state[RIGHT+2] = state[DOWN], state[DOWN+1]
         state[DOWN], state[DOWN+1] = state[LEFT+1], state[LEFT+3]
-        state[LEFT+1], state[LEFT+3] = u2, u3
+        state[LEFT+1], state[LEFT+3] = u3, u2
         # convert it back to string
         self.state = "".join(state)
     
@@ -135,12 +135,12 @@ class Cube:
         print(f'        +---+---+')  
 
 mycube = Cube()
-# mycube.printState()
+mycube.printState()
 mycube.frontCW()
-# mycube.printState()
+mycube.printState()
 # mycube.frontCCW()
 mycube.upCW()
-# mycube.printState()
-mycube.frontCCW() #masi eror
-# mycube.upCCW() # think so juga?
+mycube.printState()
+mycube.frontCCW()
+# mycube.upCCW() 
 mycube.printState()
