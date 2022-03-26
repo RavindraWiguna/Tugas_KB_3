@@ -1,0 +1,37 @@
+START CUBE
+        +---+---+
+        | G | O |
+        +---+---+
+        | O | Y |
++---+---+---+---+---+---+---+---+
+| W | B | Y | B | R | Y | G | R |
++---+---+---+---+---+---+---+---+
+| W | O | W | W | O | G | R | R |
++---+---+---+---+---+---+---+---+
+        | G | B |
+        +---+---+
+        | B | Y |
+        +---+---+
+GOAL CUBE
+        +---+---+
+        | W | W |
+        +---+---+
+        | W | W |
++---+---+---+---+---+---+---+---+
+| O | O | G | G | R | R | B | B |
++---+---+---+---+---+---+---+---+
+| O | O | G | G | R | R | B | B |
++---+---+---+---+---+---+---+---+
+        | Y | Y |
+        +---+---+
+        | Y | Y |
+        +---+---+
+Searching Solution using Greedy Best First Search Algorithm...
+HEY, Found the goal!
+Greedy Best First Search elapsed time: 34.647211999999996| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]
+Total node opened: 3144123
+Total move: 540 (Without root)
+Path:
+['.', 'L', 'DC', 'BC', 'F', 'D', 'D', 'B', 'U', 'U', 'FC', 'U', 'FC', 'U', 'L', 'D', 'LC', 'DC', 'L', 'D', 'U', 'R', 'UC', 'RC', 'U', 'R', 'D', 'B', 'DC', 'R', 'R', 'UC', 'BC', 
+'U', 'B', 'B', 'UC', 'LC', 'U', 'B', 'DC', 'R', 'D', 'BC', 'D', 'B', 'DC', 'RC', 'RC', 'DC', 'F', 'D', 'FC', 'D', 'R', 'DC', 'F', 'U', 'LC', 'F', 'UC', 'R', 'FC', 'UC', 'B', 'LC', 'BC', 'U', 'U', 'B', 'UC', 'BC', 'U', 'U', 'LC', 'BC', 'L', 'BC', 'LC', 'B', 'LC', 'DC', 'L', 'D', 'FC', 'D', 'F', 'DC', 'L', 'D', 'LC', 'D', 'F', 'DC', 'FC', 'R', 'FC', 'RC', 'F', 'D', 'FC', 'LC', 'RC', 'BC', 'R', 'B', 'RC', 'BC', 'LC', 'D', 'L', 'L', 'D', 'LC', 'LC', 'FC', 'FC', 'U', 'U', 'RC', 'F', 'F', 'R', 'R', 'F', 'RC', 'RC', 'DC', 'DC', 'R', 'D', 'RC', 'DC', 'DC', 'R', 'D', 'RC', 'DC', 'RC', 'D', 'D', 'R', 'R', 'B', 'B', 'RC', 'BC', 'DC', 'B', 'R', 'FC', 'U', 'F', 'RC', 'RC', 'FC', 'R', 'F', 'RC', 'RC', 'U', 'F', 'UC', 'F', 'U', 'FC', 'U', 'L', 'UC', 'LC', 'LC', 'UC', 'L', 'B', 'U', 'RC', 'B', 'D', 'BC', 'LC', 'DC', 'LC', 'D', 'L', 'D', 'LC', 'F', 'U', 'FC', 'UC', 'F', 'F', 'U', 'LC', 'UC', 'L', 'U', 'LC', 'BC', 'BC', 'L', 'B', 'LC', 'BC', 'U', 'RC', 'UC', 'R', 'UC', 'BC', 'U', 'BC', 'RC', 'B', 'R', 'B', 'U', 'RC', 'UC', 'UC', 'LC', 'U', 'B', 'B', 'D', 'LC', 'LC', 'DC', 'L', 'BC', 'LC', 'B', 'L', 'D', 'LC', 'BC', 'DC', 'R', 'B', 'B', 'UC', 'LC', 'U', 'BC', 'UC', 'L', 'L', 'U', 'U', 'LC', 'B', 'L', 'BC', 'L', 'UC', 'LC', 'LC', 'U', 'L', 'L', 'UC', 'FC', 'U', 'L', 'DC', 'B', 'D', 'LC', 'LC', 'DC', 'L', 'D', 'LC', 'LC', 'B', 'D', 'D', 'BC', 'DC', 'B', 'D', 'BC', 'D', 'L', 'DC', 'LC', 'F', 'LC', 'FC', 'L', 'DC', 
+'LC', 'LC', 'D', 'F', 'F', 'U', 'LC', 'UC', 'UC', 'RC', 'U', 'F', 'R', 'F', 'RC', 'FC', 'U', 'FC', 'UC', 'R', 'UC', 'RC', 'U', 'F', 'LC', 'UC', 'L', 'B', 'UC', 'BC', 'R', 'U', 'FC', 'UC', 'F', 'UC', 'RC', 'U', 'RC', 'F', 'R', 'FC', 'RC', 'F', 'D', 'D', 'FC', 'D', 'F', 'DC', 'DC', 'F', 'F', 'R', 'FC', 'R', 'FC', 'UC', 'UC', 'F', 'U', 'FC', 'UC', 'R', 'BC', 'RC', 'B', 'RC', 'UC', 'R', 'R', 'UC', 'RC', 'U', 'R', 'UC', 'RC', 'U', 'RC', 'FC', 'R', 'F', 'D', 'FC', 'DC', 'L', 'F', 'UC', 'F', 'U', 'FC', 'LC', 'F', 'L', 'DC', 'LC', 'D', 'LC', 'FC', 'U', 'L', 'UC', 'L', 'F', 'LC', 'FC', 'LC', 'F', 'L', 'FC', 'L', 'D', 'D', 'LC', 'FC', 'DC', 'FC', 'D', 'D', 'F', 'D', 'D', 'FC', 'FC', 'DC', 'L', 'DC', 'LC', 'D', 'F', 'F', 'DC', 'FC', 'D', 'F', 'DC', 'FC', 'D', 'R', 'U', 'F', 'RC', 'FC', 'R', 'UC', 'R', 'B', 'RC', 'RC', 'L', 'L', 'F', 'L', 'L', 'BC', 'RC', 'RC', 'B', 'B', 'UC', 'BC', 'U', 'BC', 'R', 'DC', 'R', 'D', 'RC', 'RC', 'B', 'R', 'BC', 'RC', 'B', 'R', 'BC', 'RC', 'B', 'U', 'U', 'BC', 'UC', 'B', 'B', 'U', 'RC', 'UC', 'R', 'U', 'RC', 'UC', 'R', 'UC', 'B', 'UC', 'BC', 'U', 'BC', 'RC', 'B', 'RC', 'B', 'R', 'B', 'LC', 'DC', 'L', 'D', 'L', 'DC', 'LC', 'D', 'D', 'L', 'BC', 'LC', 'B', 'LC', 'DC', 'L', 'DC', 'L', 'D', 'LC', 'D', 'LC', 'DC', 'B', 'DC', 'BC', 'D', 'L', 'L', 'DC', 'LC', 'D', 'L', 'D', 'LC', 'DC', 'B', 'B', 'UC', 'BC', 'R', 'BC', 'RC', 'UC', 'B', 'U']

@@ -46,5 +46,5 @@ def get_heuristic_val(cubic_state):
     total_wrong_side/=8 # because one turn, move 8 tiles
     return total_wrong_side
 
-print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
-print(get_heuristic_val("WWOOOYOYGGGGWRWRBBBBRRYY"))
+# print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
+# print(get_heuristic_val("GOOYWBWOYBWWRYOGGRRRGBBY"))
