@@ -15,7 +15,7 @@ POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
 def a_star(start_cube, goal_cube):
     total_opened_node = 0
-    total_closed_node = 0
+    total_removed_node = 0
     
     open_nodes = PriorityQueue()#store node that haven't explored with pqueue
     closed_state = Counter() #counter for state that has been explored
@@ -40,7 +40,7 @@ def a_star(start_cube, goal_cube):
         min_cube = open_nodes.get()
         #add min node counter in 
         closed_state[min_cube.state]+=1
-        total_closed_node+=1
+        total_removed_node+=1
         
         #check if it is the goal node
         # min_cube_state = min_cube.state
@@ -81,7 +81,7 @@ def a_star(start_cube, goal_cube):
 
         #End of For Loop
     #End of While Loop
-    return path, total_opened_node, total_closed_node
+    return path, total_opened_node, total_removed_node
 
 def main():
     # create start and goal cube
@@ -96,11 +96,11 @@ def main():
     #search!
     print("Searching Solution using A* Algorithm...")
     start_time = time.perf_counter()
-    path, total_opened_node, total_closed_node = a_star(start_cube, goal_cube)
+    path, total_opened_node, total_removed_node = a_star(start_cube, goal_cube)
     end_time = time.perf_counter()
     print(f'A star elapsed time: {end_time - start_time}| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]')
     print(f'Total node opened: {total_opened_node}')
-    print(f'Total node removed from queue: {total_closed_node}')
+    print(f'Total node removed from queue: {total_removed_node}')
     print(f'Total move: {len(path)-1} (Without root)')
     print(f'Path:\n{path}')
 
