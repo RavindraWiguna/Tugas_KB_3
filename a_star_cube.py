@@ -44,7 +44,7 @@ def a_star(start_cube, goal_cube):
         
         #check if it is the goal node
         # min_cube_state = min_cube.state
-        if (min_cube == goal_cube):
+        if (min_cube.state == goal_cube.state):
             print("HEY, Found the goal!")
             path = reconstruct_path(min_cube.state, cameFrom)
             break

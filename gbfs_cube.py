@@ -33,7 +33,7 @@ def greedy_best_first_search(start_cube, goal_cube):
         total_removed_node+=1
         # print(f'this cube came from: {cameFrom[min_cube.state][1]}')
         # os.system("pause")
-        if(min_cube == goal_cube):
+        if(min_cube.state == goal_cube.state):
             print("HEY, Found the goal!")
             path = reconstruct_path(min_cube.state, cameFrom)
             isFound = True
