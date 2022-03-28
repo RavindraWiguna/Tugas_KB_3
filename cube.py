@@ -15,6 +15,9 @@ class Cube:
         self.g = 0
         self.f = 0
 
+    # comparing 2 cube if they are the same (if needed)
+    def __eq__(self, other):
+        return self.state == other.state
     # comparing 2 cube if one is greater ( f value)
     def __gt__(self, other):
         if(self.f == other.f):
