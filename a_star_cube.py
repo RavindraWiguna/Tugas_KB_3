@@ -43,7 +43,7 @@ def a_star(start_cube, goal_cube):
         total_closed_node+=1
         
         #check if it is the goal node
-        min_cube_state = min_cube.state
+        # min_cube_state = min_cube.state
         if (min_cube == goal_cube):
             print("HEY, Found the goal!")
             path = reconstruct_path(min_cube.state, cameFrom)
@@ -52,7 +52,7 @@ def a_star(start_cube, goal_cube):
         # loop for every possible move
         for move in POS_MOVE:
             #generate node based on move
-            new_state = create_cube_state(min_cube_state, move)
+            new_state = create_cube_state(min_cube.state, move)
             move_node = Cube(new_state)
             # os.system("pause")
             #check if this node's state has been reached/visited/closed

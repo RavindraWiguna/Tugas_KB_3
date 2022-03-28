@@ -40,12 +40,12 @@ def greedy_best_first_search(start_cube, goal_cube):
             break
         
         
-        min_cube_state = min_cube.state
+        # min_cube_state = min_cube.state
         #get all possible move
         for move in POS_MOVE:
             
             #generate node based on move
-            new_state = create_cube_state(min_cube_state, move)
+            new_state = create_cube_state(min_cube.state, move)
             move_cube = Cube(new_state)
             #check if this node's state has been reached/visited/closed
             if(visited[move_cube.state] > 0):
