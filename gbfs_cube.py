@@ -11,7 +11,8 @@ import os
 POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 def greedy_best_first_search(start_cube, goal_cube):
     total_opened_node = 0
-    
+    total_closed_node = 0
+
     queue = PriorityQueue()#store node that haven't explored with pqueue
     visited = Counter() #counter for state that has been explored
     cameFrom = {}
@@ -29,6 +30,7 @@ def greedy_best_first_search(start_cube, goal_cube):
     while queue and not isFound:
         #get node with min f value
         min_cube = queue.get()
+        total_closed_node+=1
         # print(f'this cube came from: {cameFrom[min_cube.state][1]}')
         # os.system("pause")
         if(min_cube == goal_cube):
@@ -60,11 +62,12 @@ def greedy_best_first_search(start_cube, goal_cube):
         #End of For Loop
     #End of While Loop
     # return path, total_opened_node
-    return path, total_opened_node
+    return path, total_opened_node, total_closed_node
 
 def main():
     # create start and goal cube
-    start_cube = Cube("BBYRRGGYOYBGBOWGWWRWOROY")
+    start_state = readfile("cube.txt")
+    start_cube = Cube(start_state)
     goal_cube = Cube() # awal is: WWWWOOOOGGGGRRRRBBBBYYYY
     print("START CUBE")
     start_cube.printState()
@@ -74,10 +77,11 @@ def main():
     #search!
     print("Searching Solution using Greedy Best First Search Algorithm...")
     start_time = time.perf_counter()
-    path, total_opened_node = greedy_best_first_search(start_cube, goal_cube)
+    path, total_opened_node, total_closed_node = greedy_best_first_search(start_cube, goal_cube)
     end_time = time.perf_counter()
     print(f'Greedy Best First Search elapsed time: {end_time - start_time}| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]')
     print(f'Total node opened: {total_opened_node}')
+    print(f'Total node removed from queue: {total_closed_node}')
     print(f'Total move: {len(path)-1} (Without root)')
     print(f'Path:\n{path}')
 
