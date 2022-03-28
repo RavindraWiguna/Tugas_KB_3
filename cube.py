@@ -6,15 +6,6 @@ RIGHT = 12
 BACK = 16
 DOWN = 20
 
-
-# COLOR CODE
-WHITE = 0
-YELLOW = 1
-ORANGE  = 2
-RED = 3
-BLUE = 4
-GREEN = 5
-
 class Cube:
     def __init__(self, state="WWWWOOOOGGGGRRRRBBBBYYYY"):
         #saved as ulfrbd
