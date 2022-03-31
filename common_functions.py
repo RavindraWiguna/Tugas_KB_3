@@ -1,18 +1,10 @@
 from cube import Cube
-
+import pickle
 def readfile(filename):
     f = open(filename)
     data = f.read()
     return data
 
-# CB_DP = {
-#     "W": ((0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1)),
-#     "O": ((1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)),
-#     "G": ((2, 0, 0), (2, 0, 1), (2, 1, 0), (2, 1, 1)),
-#     "R": ((3, 0, 0), (3, 0, 1), (3, 1, 0), (3, 1, 1)),
-#     "B": ((4, 0, 0), (4, 0, 1), (4, 1, 0), (4, 1, 1)),
-#     "Y": ((5, 0, 0), (5, 0, 1), (5, 1, 0), (5, 1, 1)),
-# }
 
 SIDE_DP = {
     "W": 0,
@@ -23,34 +15,42 @@ SIDE_DP = {
     "Y": 5,
 }
 
+hW = pickle.load(open("BFS_Heuristic_W.pickle", "rb"))
+hO = pickle.load(open("BFS_Heuristic_O.pickle", "rb"))
+hG = pickle.load(open("BFS_Heuristic_G.pickle", "rb"))
+hR = pickle.load(open("BFS_Heuristic_R.pickle", "rb"))
+hB = pickle.load(open("BFS_Heuristic_B.pickle", "rb"))
+hY = pickle.load(open("BFS_Heuristic_Y.pickle", "rb"))
+
+
 def get_heuristic_val(cubic_state):
-    total_wrong_side = 0
-    for id, c in enumerate(cubic_state):
-        #  extract side
-        side = id//4
-        total_wrong_side+=SIDE_DP[c] != side
-        # col = id%2
-        # row  = (id%4)//2
-    #     tupple_pos = CB_DP[c]
-    #     distance = 0
-    #     for tside, trow, tcol in tupple_pos:
-    #         temp_distance = 0
-    #         temp_distance += abs(side - tside)
-    #         if(temp_distance==0):
-    #             # udah di side yang sama, berhenti
-    #             distance = 0
-    #             break
-    #         # kalau gak 0, mungkin salah tempat
-    #         distance += temp_distance
-    #     # end of for loop
-    #     distance /= 4 # karena ada 4 possible position
-    #     total_distance+= distance
-    total_wrong_side/=8 # because one turn, move 8 tiles
-    return total_wrong_side
+    # total_wrong_side = 0
+    sW = ""
+    sO = ""
+    sG = ""
+    sR = ""
+    sB = ""
+    sY = ""
+    # get state for each color
+    for c in cubic_state:
+        sW += chr(ord('.')*(c!='W') + ord('W')*(c=='W'))
+        sO += chr(ord('.')*(c!='O') + ord('O')*(c=='O'))
+        sG += chr(ord('.')*(c!='G') + ord('G')*(c=='G'))
+        sR += chr(ord('.')*(c!='R') + ord('R')*(c=='R'))
+        sB += chr(ord('.')*(c!='B') + ord('B')*(c=='B'))
+        sY += chr(ord('.')*(c!='Y') + ord('Y')*(c=='Y'))
+
+    hhW = hW[sW]
+    hhO = hO[sO]
+    hhG = hG[sG]
+    hhR = hR[sR]
+    hhB = hB[sB]
+    hhY = hY[sY]
+    return max([hhW, hhO, hhG, hhR, hhB, hhY])
 
 # print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
-# print(get_heuristic_val("GOOYWBWOYBWWRYOGGRRRGBBY"))
-
+# print()
+# get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY")
 def frontCW(cube_state):
     cube = Cube(cube_state)
     cube.frontCW()
