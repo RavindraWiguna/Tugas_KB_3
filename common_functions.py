@@ -51,35 +51,82 @@ def get_heuristic_val(cubic_state):
 # print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
 # print(get_heuristic_val("GOOYWBWOYBWWRYOGGRRRGBBY"))
 
-def create_cube_state(cube_state, move):
+def frontCW(cube_state):
     cube = Cube(cube_state)
-    if(move == 'F'):
-        cube.frontCW()
-    elif(move == 'R'):
-        cube.rightCW()
-    elif(move == 'U'):
-        cube.upCW()
-    elif(move == 'B'):
-        cube.backCW()
-    elif(move == 'L'):
-        cube.leftCW()
-    elif(move == 'D'):
-        cube.downCW()
-    elif(move == 'FC'):
-        cube.frontCCW()
-    elif(move == 'RC'):
-        cube.rightCCW()
-    elif(move == 'UC'):
-        cube.upCCW()
-    elif(move == 'BC'):
-        cube.backCCW()
-    elif(move == 'LC'):
-        cube.leftCCW()
-    elif(move == 'DC'):
-        cube.downCCW()
-    else:
-        raise ValueError
+    cube.frontCW()
     return cube.state
+
+def frontCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.frontCCW()
+    return cube.state
+
+def rightCW(cube_state):
+    cube = Cube(cube_state)
+    cube.rightCW()
+    return cube.state
+
+def rightCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.rightCCW()
+    return cube.state
+
+def leftCW(cube_state):
+    cube = Cube(cube_state)
+    cube.leftCW()
+    return cube.state
+
+def leftCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.leftCCW()
+    return cube.state
+
+def backCW(cube_state):
+    cube = Cube(cube_state)
+    cube.backCW()
+    return cube.state
+
+def backCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.backCCW()
+    return cube.state
+
+def upCW(cube_state):
+    cube = Cube(cube_state)
+    cube.upCW()
+    return cube.state
+
+def upCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.upCCW()
+    return cube.state
+
+def downCW(cube_state):
+    cube = Cube(cube_state)
+    cube.downCW()
+    return cube.state
+
+def downCCW(cube_state):
+    cube = Cube(cube_state)
+    cube.downCCW()
+    return cube.state
+
+move_func_dict ={'F':frontCW, 
+                 'R':rightCW, 
+                 'U':upCW, 
+                 'B':backCW, 
+                 'L':leftCW, 
+                 'D':downCW, 
+                 'FC':frontCCW, 
+                 'RC':rightCCW, 
+                 'UC':upCCW, 
+                 'BC':backCCW, 
+                 'LC':leftCCW, 
+                 'DC':downCCW}
+
+
+def create_cube_state(cube_state, move):
+    return move_func_dict[move](cube_state)
 
 def reconstruct_path(finish_state, cameFrom: dict):
     path = []
