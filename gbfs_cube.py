@@ -73,6 +73,7 @@ def main():
     start_cube.printState()
     print("GOAL CUBE")
     goal_cube.printState()
+    print(f"Estimated cost from start [h(n)]: {get_heuristic_val(start_state)}")   
 
     #search!
     print("Searching Solution using Greedy Best First Search Algorithm...")
