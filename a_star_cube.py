@@ -17,10 +17,9 @@ def a_star(start_cube, goal_cube):
     total_opened_node = 0
     total_removed_node = 0
     
-    open_nodes = PriorityQueue()#store node that haven't explored with pqueue
-    closed_state = Counter() #counter for state that has been explored
-    everInOpen = Counter()
-    cameFrom = {} #dict to map where a node came from
+    open_nodes = PriorityQueue()# store node that haven't explored with pqueue
+    currentlyInOpen = Counter()
+    cameFrom = {} # dict to map where a node came from
     
     #node scores
     gScore = defaultdict(lambda:float('inf'))
@@ -29,7 +28,7 @@ def a_star(start_cube, goal_cube):
     start_cube.f = start_cube.h
     
     open_nodes.put(start_cube)
-    everInOpen[start_cube.state]+=1
+    currentlyInOpen[start_cube.state]+=1
     cameFrom[start_cube.state] = (None, ".")
     total_opened_node+=1
     path = None #saved path for return value
@@ -38,8 +37,9 @@ def a_star(start_cube, goal_cube):
     while open_nodes:
         #get node with min f value
         min_cube = open_nodes.get()
+        # change its state in "currentlyInOpen" to false/0
+        currentlyInOpen[min_cube.state] = 0
         #add min node counter in 
-        closed_state[min_cube.state]+=1
         total_removed_node+=1
         
         #check if it is the goal node
@@ -55,11 +55,7 @@ def a_star(start_cube, goal_cube):
             new_state = create_cube_state(min_cube.state, move)
             move_node = Cube(new_state)
             # os.system("pause")
-            #check if this node's state has been reached/visited/closed
-            if(closed_state[move_node.state] > 0):
-                continue
            
-            #this node havent yet visited
             tentative_gScore = gScore[min_cube.state] + 1 #distance of node is same, so always +1
             if(tentative_gScore < gScore[move_node.state]):
                 #Found a smaller g score of this state, so update the g score and cameFrom
@@ -70,14 +66,11 @@ def a_star(start_cube, goal_cube):
                 move_node.f = tentative_gScore + move_node.h
                 
                 #check if it is not in the open set
-                if(everInOpen[move_node.state]==0):
+                if(currentlyInOpen[move_node.state]==0):
                     #never in open
                     total_opened_node+=1
                     open_nodes.put(move_node)
-                    everInOpen[move_node.state]+=1
-                # if(move_node not in open_nodes.queue):
-                    # total_opened_node+=1
-                    # open_nodes.put(move_node)
+                    currentlyInOpen[move_node.state]+=1
 
         #End of For Loop
     #End of While Loop
