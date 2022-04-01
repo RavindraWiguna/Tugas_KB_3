@@ -13,4 +13,4 @@ def scramble(n):
     
     print(init_cube.state)
 
-scramble(15)
+scramble(12)
