@@ -15,38 +15,50 @@ SIDE_DP = {
     "Y": 5,
 }
 
-hW = pickle.load(open("BFS_Heuristic_W.pickle", "rb"))
-hO = pickle.load(open("BFS_Heuristic_O.pickle", "rb"))
-hG = pickle.load(open("BFS_Heuristic_G.pickle", "rb"))
-hR = pickle.load(open("BFS_Heuristic_R.pickle", "rb"))
-hB = pickle.load(open("BFS_Heuristic_B.pickle", "rb"))
-hY = pickle.load(open("BFS_Heuristic_Y.pickle", "rb"))
+# hW = pickle.load(open("BFS_Heuristic_W.pickle", "rb"))
+# hO = pickle.load(open("BFS_Heuristic_O.pickle", "rb"))
+# hG = pickle.load(open("BFS_Heuristic_G.pickle", "rb"))
+# hR = pickle.load(open("BFS_Heuristic_R.pickle", "rb"))
+# hB = pickle.load(open("BFS_Heuristic_B.pickle", "rb"))
+# hY = pickle.load(open("BFS_Heuristic_Y.pickle", "rb"))
 
+hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
+hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
+hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
 
 def get_heuristic_val(cubic_state):
     # total_wrong_side = 0
-    sW = ""
-    sO = ""
-    sG = ""
-    sR = ""
-    sB = ""
-    sY = ""
+    # sW = ""
+    # sO = ""
+    # sG = ""
+    # sR = ""
+    # sB = ""
+    # sY = ""
+    sWY, sGB, sOR = "", "", ""
     # get state for each color
     for c in cubic_state:
-        sW += chr(ord('.')*(c!='W') + ord('W')*(c=='W'))
-        sO += chr(ord('.')*(c!='O') + ord('O')*(c=='O'))
-        sG += chr(ord('.')*(c!='G') + ord('G')*(c=='G'))
-        sR += chr(ord('.')*(c!='R') + ord('R')*(c=='R'))
-        sB += chr(ord('.')*(c!='B') + ord('B')*(c=='B'))
-        sY += chr(ord('.')*(c!='Y') + ord('Y')*(c=='Y'))
+        # sW += chr(ord('.')*(c!='W') + ord('W')*(c=='W'))
+        # sO += chr(ord('.')*(c!='O') + ord('O')*(c=='O'))
+        # sG += chr(ord('.')*(c!='G') + ord('G')*(c=='G'))
+        # sR += chr(ord('.')*(c!='R') + ord('R')*(c=='R'))
+        # sB += chr(ord('.')*(c!='B') + ord('B')*(c=='B'))
+        # sY += chr(ord('.')*(c!='Y') + ord('Y')*(c=='Y'))
+        sWY += chr(ord('.')*(c!='W' and c!= 'Y') + ord('W')*(c=='W') + ord('Y')*(c=='Y'))
+        sOR += chr(ord('.')*(c!='O' and c!= 'R') + ord('O')*(c=='O') + ord('R')*(c=='R'))
+        sGB += chr(ord('.')*(c!='G' and c!= 'B') + ord('G')*(c=='G') + ord('B')*(c=='B'))
 
-    hhW = hW[sW]
-    hhO = hO[sO]
-    hhG = hG[sG]
-    hhR = hR[sR]
-    hhB = hB[sB]
-    hhY = hY[sY]
-    return max([hhW, hhO, hhG, hhR, hhB, hhY])
+    # hhW = hW[sW]
+    # hhO = hO[sO]
+    # hhG = hG[sG]
+    # hhR = hR[sR]
+    # hhB = hB[sB]
+    # hhY = hY[sY]
+    hhWY = hWY[sWY]
+    hhOR = hOR[sOR]
+    hhGB = hGB[sGB]
+    # return max([hhW, hhO, hhG, hhR, hhB, hhY, hhWY, hhGB, hhOR])
+    return max([hhGB, hhOR, hhWY])
+    # return (hhGB, hhOR, hhWY)//
 
 # print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
 # print()

@@ -12,7 +12,7 @@ POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
 # color = 'W'
 def bfs_gen():
-    init_cube = Cube("....................YYYY")
+    init_cube = Cube("....OOOO....RRRR........")
                       
 
     heuristic_dict = {}
@@ -43,7 +43,7 @@ def bfs_gen():
     except KeyboardInterrupt:
         pass
 
-    with open('BFS_Heuristic_Y.pickle', 'wb') as handle:
+    with open('BFS_Heuristic_OR.pickle', 'wb') as handle:
         pickle.dump(heuristic_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("finished")
