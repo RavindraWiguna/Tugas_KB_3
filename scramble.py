@@ -8,9 +8,11 @@ POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 def scramble(n):
     init_cube = Cube()
     for i in range(n):
-        init_cube.state = move_func_dict[POS_MOVE[randint(0, 11)]](init_cube.state)
+        move = POS_MOVE[randint(0, 11)]
+        init_cube.state = move_func_dict[move](init_cube.state)
+        print(move, end=", ")
 
     
     print(init_cube.state)
 
-scramble(12)
+scramble(23)
