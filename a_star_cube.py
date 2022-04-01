@@ -18,7 +18,7 @@ def a_star(start_cube, goal_cube):
     total_removed_node = 0
     
     open_nodes = PriorityQueue()# store node that haven't explored with pqueue
-    currentlyInOpen = Counter()
+    currentlyInOpen = Counter() # store boolean if a node is in open node (dp, so that we wont use linear search)
     cameFrom = {} # dict to map where a node came from
     
     #node scores
