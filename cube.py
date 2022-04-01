@@ -1,3 +1,10 @@
+from termcolor import colored
+import os
+dcolor = {'R':'red','G':'green','Y':'yellow', 'B':'blue', 'O':'magenta', 'C':'cyan', 'W':'white'}
+
+def draw(text):
+    return colored(text, dcolor[text], attrs=['bold'])
+
 # START INDEX OF EACH SIDE
 UP = 0
 LEFT = 4
@@ -5,6 +12,7 @@ FRONT = 8
 RIGHT = 12
 BACK = 16
 DOWN = 20
+
 
 class Cube:
     def __init__(self, state="WWWWOOOOGGGGRRRRBBBBYYYY"):
@@ -193,17 +201,17 @@ class Cube:
 
     def printState(self):
         print(f'        +---+---+')
-        print(f'        | {self.state[UP]} | {self.state[UP+1]} |')
+        print(f'        | {draw(self.state[UP])} | {draw(self.state[UP+1])} |')
         print(f'        +---+---+')
-        print(f'        | {self.state[UP+2]} | {self.state[UP+3]} |')
+        print(f'        | {draw(self.state[UP+2])} | {draw(self.state[UP+3])} |')
         print(f'+---+---+---+---+---+---+---+---+')
-        print(f'| {self.state[LEFT]} | {self.state[LEFT+1]} | {self.state[FRONT]} | {self.state[FRONT+1]} | {self.state[RIGHT]} | {self.state[RIGHT+1]} | {self.state[BACK]} | {self.state[BACK+1]} |')
+        print(f'| {draw(self.state[LEFT])} | {draw(self.state[LEFT+1])} | {draw(self.state[FRONT])} | {draw(self.state[FRONT+1])} | {draw(self.state[RIGHT])} | {draw(self.state[RIGHT+1])} | {draw(self.state[BACK])} | {draw(self.state[BACK+1])} |')
         print(f'+---+---+---+---+---+---+---+---+')
-        print(f'| {self.state[LEFT+2]} | {self.state[LEFT+3]} | {self.state[FRONT+2]} | {self.state[FRONT+3]} | {self.state[RIGHT+2]} | {self.state[RIGHT+3]} | {self.state[BACK+2]} | {self.state[BACK+3]} |')
+        print(f'| {draw(self.state[LEFT+2])} | {draw(self.state[LEFT+3])} | {draw(self.state[FRONT+2])} | {draw(self.state[FRONT+3])} | {draw(self.state[RIGHT+2])} | {draw(self.state[RIGHT+3])} | {draw(self.state[BACK+2])} | {draw(self.state[BACK+3])} |')
         print(f'+---+---+---+---+---+---+---+---+')
-        print(f'        | {self.state[DOWN]} | {self.state[DOWN+1]} |')
+        print(f'        | {draw(self.state[DOWN])} | {draw(self.state[DOWN+1])} |')
         print(f'        +---+---+')
-        print(f'        | {self.state[DOWN+2]} | {self.state[DOWN+3]} |')
+        print(f'        | {draw(self.state[DOWN+2])} | {draw(self.state[DOWN+3])} |')
         print(f'        +---+---+')  
 
 
