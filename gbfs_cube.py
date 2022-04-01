@@ -14,15 +14,13 @@ def greedy_best_first_search(start_cube, goal_cube):
     total_removed_node = 0
 
     queue = PriorityQueue()#store node that haven't explored with pqueue
-    visited = Counter() #counter for state that has been explored
-    cameFrom = {}
+    cameFrom = {} # store where the node came from (also as visited)
     
     #node scores
     start_cube.h = get_heuristic_val(start_cube.state) 
     
     queue.put(start_cube) #add to queue
     cameFrom[start_cube.state] = (None, ".") #record it origin as None and "." -> root
-    visited[start_cube.state]+=1 #mark it as visited
     total_opened_node+=1
     path = None #saved path for return value
     isFound = False
@@ -48,7 +46,7 @@ def greedy_best_first_search(start_cube, goal_cube):
             new_state = create_cube_state(min_cube.state, move)
             move_cube = Cube(new_state)
             #check if this node's state has been reached/visited/closed
-            if(visited[move_cube.state] > 0):
+            if(move_cube.state in cameFrom):
                 continue
             
             #this node has not visited so, add to queue, but first calc the h val
@@ -56,7 +54,6 @@ def greedy_best_first_search(start_cube, goal_cube):
             #do just like the start node
             queue.put(move_cube)
             cameFrom[move_cube.state] = (min_cube.state, move)
-            visited[move_cube.state]+=1
             total_opened_node+=1     
 
         #End of For Loop
