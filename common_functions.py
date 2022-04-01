@@ -150,3 +150,13 @@ def reconstruct_path(finish_state, cameFrom: dict):
         path.append(move)
         # print(f'{move}, ', end="")
     return path[::-1] #reverse the path, and return it
+
+
+def print_history(init_state, path):
+    cube = Cube(init_state)
+    #cut from id 1-end
+    for i, move in enumerate(path[1:]):
+        cube = Cube(move_func_dict[move](cube.state))
+        print(f'MOVE #{i+1}: {move}')
+        cube.printState()
+        input("continue")

@@ -97,7 +97,11 @@ def main():
     print(f'Total node removed from queue: {total_removed_node}')
     print(f'Total move: {len(path)-1} (Without root)')
     print(f'Path:\n{path}')
-
+    ans = input("Do you want to see the solutions in play? [y/n] Default:y\n>>>")
+    if(ans == 'n' or ans == 'N'):
+        print("Alright then, closing program...")
+        return 0
+    print_history(start_state, path)
 
 
 if __name__ == "__main__":
