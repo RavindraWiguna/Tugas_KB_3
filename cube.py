@@ -1,5 +1,5 @@
-from termcolor import colored
-import os
+from snipped_termcolor import colored
+
 dcolor = {'R':'red','G':'green','Y':'yellow', 'B':'blue', 'O':'magenta', 'C':'cyan', 'W':'white'}
 
 def draw(text):
