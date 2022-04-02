@@ -1,8 +1,19 @@
+from collections import Counter
 from cube import Cube
 import pickle
 def readfile(filename):
     f = open(filename)
     data = f.read()
+    arr = ["W", "O", "G", "R", "B", "Y"]
+    count = [0, 0, 0, 0, 0, 0]
+    for c in data:
+        for i, color in enumerate(arr):
+            count[i] += c==color
+    # print(count)
+    for i in count:
+        if(i != 4):
+            print(count)
+            raise ValueError
     return data
 
 
@@ -21,12 +32,30 @@ SIDE_DP = {
 # hR = pickle.load(open("BFS_Heuristic_R.pickle", "rb"))
 # hB = pickle.load(open("BFS_Heuristic_B.pickle", "rb"))
 # hY = pickle.load(open("BFS_Heuristic_Y.pickle", "rb"))
+try:
+    hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
+    hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
+    hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
+except FileNotFoundError:
+    print("HEURISTIC DICT NOT FOUND")
 
-hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
-hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
-hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
+
+def check_side_equalness(cubic_state):
+    side = (0, 4, 8, 12, 16) # only need check 5 side, if all 5 right, sisanya must be right
+    isComplete = True
+    for i in side:
+        for j in range(3):
+            if(cubic_state[i+j] != cubic_state[i+j+1]):
+                isComplete = False
+                break
+        if(not isComplete):
+            break
+    
+    return isComplete
 
 def get_heuristic_val(cubic_state):
+    # if(check_side_equalness(cubic_state)):
+    #     return 0
     # total_wrong_side = 0
     # sW = ""
     # sO = ""
@@ -56,13 +85,9 @@ def get_heuristic_val(cubic_state):
     hhWY = hWY[sWY]
     hhOR = hOR[sOR]
     hhGB = hGB[sGB]
-    # return max([hhW, hhO, hhG, hhR, hhB, hhY, hhWY, hhGB, hhOR])
-    return max([hhGB, hhOR, hhWY])
-    # return (hhGB, hhOR, hhWY)//
+    # print([hhWY, hhOR, hhGB])
+    return max(hhWY, hhOR, hhGB)
 
-# print(get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY"))
-# print()
-# get_heuristic_val("WWWWOOOOGGGGRRRRBBBBYYYY")
 def frontCW(cube_state):
     cube = Cube(cube_state)
     cube.frontCW()
