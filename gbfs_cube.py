@@ -39,8 +39,10 @@ def greedy_best_first_search(start_cube):
             #check if this node's state has been reached/visited/closed
             if(move_cube.state in cameFrom):
                 continue
-            # check if it is goal
+            
             move_cube.h = get_heuristic_val(move_cube.state)
+            move_cube.f = move_cube.h
+            # check if it is goal
             if(move_cube.h == 0):
                 print("HEY, Found the goal!")
                 # add it to cameFrom first
