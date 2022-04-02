@@ -43,7 +43,7 @@ def a_star(start_cube):
         total_removed_node+=1
         
         #check if it is the goal node
-        if(get_heuristic_val(min_cube.state) == 0):
+        if(min_cube.h == 0):
             print("HEY, Found the goal!")
             path = reconstruct_path(min_cube.state, cameFrom)
             break
@@ -53,7 +53,6 @@ def a_star(start_cube):
             #generate node based on move
             new_state = create_cube_state(min_cube.state, move)
             move_node = Cube(new_state)
-            # os.system("pause")
            
             tentative_gScore = gScore[min_cube.state] + 1 #distance of node is same, so always +1
             if(tentative_gScore < gScore[move_node.state]):

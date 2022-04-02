@@ -27,12 +27,14 @@ def bfs_gen():
             # update for next depth
             depth+=1
             for move in POS_MOVE:
-                # print(move)
-                #generate node based on move
+                # generate node based on move
                 move_state = create_cube_state(cur_cube_state, move)
-
+                
+                # check if this state is in heuristic dict
                 if(move_state in heuristic_dict):
+                    # if we found way to get to this state but faster
                     if(heuristic_dict[move_state] > depth):
+                        # update the depth
                         heuristic_dict[move_state] = depth
                         # put it again in openque
                         openQue.put((move_state, depth))
