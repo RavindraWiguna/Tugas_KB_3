@@ -9,7 +9,7 @@ import os
 
 #GLOBAL POSSIBLE MOVE
 POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
-def greedy_best_first_search(start_cube, goal_cube):
+def greedy_best_first_search(start_cube):
     total_opened_node = 0
     total_removed_node = 0
 
@@ -29,16 +29,7 @@ def greedy_best_first_search(start_cube, goal_cube):
         #get node with min f value
         min_cube = queue.get()
         total_removed_node+=1
-        # print(f'this cube came from: {cameFrom[min_cube.state][1]}')
-        # os.system("pause")
-        if(min_cube == goal_cube):
-            print("HEY, Found the goal!")
-            path = reconstruct_path(min_cube.state, cameFrom)
-            isFound = True
-            break
-        
-        
-        # min_cube_state = min_cube.state
+
         #get all possible move
         for move in POS_MOVE:
             
@@ -48,9 +39,17 @@ def greedy_best_first_search(start_cube, goal_cube):
             #check if this node's state has been reached/visited/closed
             if(move_cube.state in cameFrom):
                 continue
-            
-            #this node has not visited so, add to queue, but first calc the h val
+            # check if it is goal
             move_cube.h = get_heuristic_val(move_cube.state)
+            if(move_cube.h == 0):
+                print("HEY, Found the goal!")
+                # add it to cameFrom first
+                cameFrom[move_cube.state] = (min_cube.state, move)
+                path = reconstruct_path(move_cube.state, cameFrom)
+                isFound = True
+                break
+
+            #this node has not visited so, add to queue
             #do just like the start node
             queue.put(move_cube)
             cameFrom[move_cube.state] = (min_cube.state, move)
@@ -62,26 +61,23 @@ def greedy_best_first_search(start_cube, goal_cube):
     return path, total_opened_node, total_removed_node
 
 def main():
-    # create start and goal cube
     start_state = readfile("cube.txt")
     start_cube = Cube(start_state)
-    goal_cube = Cube() # awal is: WWWWOOOOGGGGRRRRBBBBYYYY
     print("START CUBE")
     start_cube.printState()
-    print("GOAL CUBE")
-    goal_cube.printState()
-    print(f"Estimated cost from start [h(n)]: {get_heuristic_val(start_state)}")   
+    print(f"Estimated cost from start [h(n)]: {get_heuristic_val(start_state)}\n")  
+    print("GOAL CUBE: each side has same color\n")  
 
     #search!
     print("Searching Solution using Greedy Best First Search Algorithm...")
     start_time = time.perf_counter()
-    path, total_opened_node, total_removed_node = greedy_best_first_search(start_cube, goal_cube)
+    path, total_opened_node, total_removed_node = greedy_best_first_search(start_cube)
     end_time = time.perf_counter()
-    print(f'Greedy Best First Search elapsed time: {end_time - start_time}| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]')
-    print(f'Total node opened: {total_opened_node}')
-    print(f'Total node removed from queue: {total_removed_node}')
-    print(f'Total move: {len(path)-1} (Without root)')
-    print(f'Path:\n{path}')
+    print(f'- A star elapsed time: {end_time - start_time}')
+    print(f'- Total node opened: {total_opened_node}')
+    print(f'- Total node removed from queue: {total_removed_node}')
+    print(f'- Total move: {len(path)-1} (Without root)')
+    print(f'- Path:\n{path}')
     ans = input("Do you want to see the solutions in play? [y/n] Default:y\n>>>")
     if(ans == 'n' or ans == 'N'):
         print("Alright then, closing program...")
