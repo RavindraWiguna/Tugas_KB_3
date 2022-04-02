@@ -13,7 +13,7 @@ from cube import Cube
 #GLOBAL POSSIBLE MOVE
 POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
-def a_star(start_cube, goal_cube):
+def a_star(start_cube):
     total_opened_node = 0
     total_removed_node = 0
     
@@ -43,8 +43,7 @@ def a_star(start_cube, goal_cube):
         total_removed_node+=1
         
         #check if it is the goal node
-        # min_cube_state = min_cube.state
-        if (min_cube == goal_cube):
+        if(get_heuristic_val(min_cube.state) == 0):
             print("HEY, Found the goal!")
             path = reconstruct_path(min_cube.state, cameFrom)
             break
@@ -80,23 +79,21 @@ def main():
     # create start and goal cube
     start_state = readfile("cube.txt")
     start_cube = Cube(start_state)
-    goal_cube = Cube() # awal is: WWWWOOOOGGGGRRRRBBBBYYYY
     print("START CUBE")
     start_cube.printState()
-    print("GOAL CUBE")
-    goal_cube.printState()
-    print(f"Estimated cost from start [h(n)]: {get_heuristic_val(start_state)}")    
+    print(f"Estimated cost from start [h(n)]: {get_heuristic_val(start_state)}\n")  
+    print("GOAL CUBE: each side has same color\n")  
 
     #search!
     print("Searching Solution using A* Algorithm...")
     start_time = time.perf_counter()
-    path, total_opened_node, total_removed_node = a_star(start_cube, goal_cube)
+    path, total_opened_node, total_removed_node = a_star(start_cube)
     end_time = time.perf_counter()
-    print(f'A star elapsed time: {end_time - start_time}| [Elapsed time may not be stable, try run it a couple of times to get the elapsed time on average]')
-    print(f'Total node opened: {total_opened_node}')
-    print(f'Total node removed from queue: {total_removed_node}')
-    print(f'Total move: {len(path)-1} (Without root)')
-    print(f'Path:\n{path}')
+    print(f'- A star elapsed time: {end_time - start_time}')
+    print(f'- Total node opened: {total_opened_node}')
+    print(f'- Total node removed from queue: {total_removed_node}')
+    print(f'- Total move: {len(path)-1} (Without root)')
+    print(f'- Path:\n{path}')
     ans = input("Do you want to see the solutions in play? [y/n] Default:y\n>>>")
     if(ans == 'n' or ans == 'N'):
         print("Alright then, closing program...")
