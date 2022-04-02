@@ -12,7 +12,7 @@ POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
 # color = 'W'
 def bfs_gen():
-    init_cube = Cube("....OOOO....RRRR........")
+    init_cube = Cube("........GGGG....BBBB....")
                       
 
     heuristic_dict = {}
@@ -32,10 +32,22 @@ def bfs_gen():
                 move_state = create_cube_state(cur_cube_state, move)
 
                 if(move_state in heuristic_dict):
+                    if(heuristic_dict[move_state] > depth):
+                        heuristic_dict[move_state] = depth
+                        # put it again in openque
+                        openQue.put((move_state, depth))
                     continue
                 # never visited so uh we add to queue
-                openQue.put((move_state, depth))
-                heuristic_dict[move_state] = depth
+                # check if each side is equal
+                isComplete = check_side_equalness(move_state)
+                if(isComplete):
+                    heuristic_dict[move_state] = 0
+                    openQue.put((move_state, 0))
+                else:
+                    heuristic_dict[move_state] = depth
+                    openQue.put((move_state, depth))
+
+                
 
             
 
@@ -43,11 +55,12 @@ def bfs_gen():
     except KeyboardInterrupt:
         pass
 
-    with open('BFS_Heuristic_OR.pickle', 'wb') as handle:
+    with open('BFS_Heuristic_GB.pickle', 'wb') as handle:
         pickle.dump(heuristic_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("finished")
     print(f"got: {len(heuristic_dict)} states")
+    print(Counter(heuristic_dict.values()))
 
 
 if __name__=="__main__":
