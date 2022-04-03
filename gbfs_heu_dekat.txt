@@ -1,0 +1,29 @@
+START CUBE
+        +---+---+
+        | Y | B |
+        +---+---+
+        | R | O |
++---+---+---+---+---+---+---+---+
+| B | Y | B | Y | G | W | R | O |
++---+---+---+---+---+---+---+---+
+| G | O | B | W | G | W | R | Y |
++---+---+---+---+---+---+---+---+
+        | W | O |
+        +---+---+
+        | R | G |
+        +---+---+
+Estimated cost from start [h(n)]: 9
+
+GOAL CUBE: each side has same color
+
+Searching Solution using Greedy Best First Search Algorithm...
+HEY, Found the goal!
+- GBFS elapsed time: 0.0071876179999890155
+- Total node opened: 462
+- Total node removed from queue: 47
+- Total move: 16 (Without root)
+- Path:
+['.', 'DC', 'LC', 'LC', 'BC', 'BC', 'R', 'D', 'F', 'RC', 'FC', 'U', 'F', 'RC', 'FC', 'RC', 'U']
+Do you want to see the solutions in play? [y/n] Default:y
+>>>n
+Alright then, closing program...

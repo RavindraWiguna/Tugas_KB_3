@@ -1,0 +1,29 @@
+START CUBE
+        +---+---+
+        | Y | B |
+        +---+---+
+        | R | O |
++---+---+---+---+---+---+---+---+
+| B | Y | B | Y | G | W | R | O |
++---+---+---+---+---+---+---+---+
+| G | O | B | W | G | W | R | Y |
++---+---+---+---+---+---+---+---+
+        | W | O |
+        +---+---+
+        | R | G |
+        +---+---+
+Estimated cost from start [h(n)]: 9
+
+GOAL CUBE: each side has same color
+
+Searching Solution using A* Algorithm...
+HEY, Found the goal!
+- A star elapsed time: 0.06448879299978216
+- Total node opened: 3642
+- Total node removed from queue: 450
+- Total move: 12 (Without root)
+- Path:
+['.', 'UC', 'F', 'UC', 'B', 'UC', 'F', 'UC', 'F', 'U', 'FC', 'U', 'FC']
+Do you want to see the solutions in play? [y/n] Default:y
+>>>n
+Alright then, closing program...

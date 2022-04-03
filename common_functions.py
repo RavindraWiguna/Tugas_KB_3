@@ -18,9 +18,12 @@ def readfile(filename):
 
 # load heuristic
 try:
-    hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
-    hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
-    hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
+    # hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
+    # hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
+    # hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
+    hWO = pickle.load(open("BFS_Heuristic_WO.pickle", "rb"))
+    hGR = pickle.load(open("BFS_Heuristic_GR.pickle", "rb"))
+    hBY = pickle.load(open("BFS_Heuristic_BY.pickle", "rb"))
 except FileNotFoundError:
     print("HEURISTIC DICT NOT FOUND")
 
@@ -39,28 +42,44 @@ def check_side_equalness(cubic_state):
     return isComplete
 
 # endoding dictionary
-eWY = defaultdict(lambda:'.')
-eWY['W'] = 'W'
-eWY['Y'] = 'Y'
-eOR = defaultdict(lambda:'.')
-eOR['O'] = 'O'
-eOR['R'] = 'R'
-eGB = defaultdict(lambda:'.')
-eGB['G'] = 'G'
-eGB['B'] = 'B'
+# eWY = defaultdict(lambda:'.')
+# eWY['W'] = 'W'
+# eWY['Y'] = 'Y'
+# eOR = defaultdict(lambda:'.')
+# eOR['O'] = 'O'
+# eOR['R'] = 'R'
+# eGB = defaultdict(lambda:'.')
+# eGB['G'] = 'G'
+# eGB['B'] = 'B'
+eWO = defaultdict(lambda:'.')
+eWO['W'] = 'W'
+eWO['O'] = 'O'
+eGR = defaultdict(lambda:'.')
+eGR['G'] = 'G'
+eGR['R'] = 'R'
+eBY = defaultdict(lambda:'.')
+eBY['Y'] = 'Y'
+eBY['B'] = 'B'
 
 def get_heuristic_val(cubic_state):
-    sWY, sGB, sOR = "", "", ""
+    # sWY, sGB, sOR = "", "", ""
+    sWO, sGR, sBY = "", "", ""
     # get state for each color
     for c in cubic_state:
-        sWY += eWY[c]
-        sOR += eOR[c]
-        sGB += eGB[c]
+        # sWY += eWY[c]
+        # sOR += eOR[c]
+        # sGB += eGB[c]
+        sWO += eWO[c]
+        sGR += eGR[c]
+        sBY += eBY[c]
 
-    hhWY = hWY[sWY]
-    hhOR = hOR[sOR]
-    hhGB = hGB[sGB]
-    return max(hhWY, hhOR, hhGB)
+    # hhWY = hWY[sWY]
+    # hhOR = hOR[sOR]
+    # hhGB = hGB[sGB]
+    hhWO = hWO[sWO]
+    hhGR = hGR[sGR]
+    hhBY = hBY[sBY]
+    return max(hhBY, hhGR, hhWO)
 
 def frontCW(cube_state):
     cube = Cube(cube_state)
