@@ -81,3 +81,9 @@ def colored(text, color=None, on_color=None, attrs=None):
 
         text += RESET
     return text
+
+# custom for rubik's
+dcolor = {'R':'red','G':'green','Y':'yellow', 'B':'blue', 'O':'magenta', 'C':'cyan', 'W':'white'}
+
+def draw(text):
+    return colored(text, dcolor[text], attrs=['bold'])
