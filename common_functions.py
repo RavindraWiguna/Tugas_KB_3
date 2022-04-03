@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import defaultdict
 from cube import Cube
 import pickle
 def readfile(filename):
@@ -9,29 +9,14 @@ def readfile(filename):
     for c in data:
         for i, color in enumerate(arr):
             count[i] += c==color
-    # print(count)
+
     for i in count:
         if(i != 4):
             print(count)
             raise ValueError
     return data
 
-
-SIDE_DP = {
-    "W": 0,
-    "O": 1,
-    "G": 2,
-    "R": 3,
-    "B": 4,
-    "Y": 5,
-}
-
-# hW = pickle.load(open("BFS_Heuristic_W.pickle", "rb"))
-# hO = pickle.load(open("BFS_Heuristic_O.pickle", "rb"))
-# hG = pickle.load(open("BFS_Heuristic_G.pickle", "rb"))
-# hR = pickle.load(open("BFS_Heuristic_R.pickle", "rb"))
-# hB = pickle.load(open("BFS_Heuristic_B.pickle", "rb"))
-# hY = pickle.load(open("BFS_Heuristic_Y.pickle", "rb"))
+# load heuristic
 try:
     hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
     hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
@@ -53,39 +38,28 @@ def check_side_equalness(cubic_state):
     
     return isComplete
 
+# endoding dictionary
+eWY = defaultdict(lambda:'.')
+eWY['W'] = 'W'
+eWY['Y'] = 'Y'
+eOR = defaultdict(lambda:'.')
+eOR['O'] = 'O'
+eOR['R'] = 'R'
+eGB = defaultdict(lambda:'.')
+eGB['G'] = 'G'
+eGB['B'] = 'B'
+
 def get_heuristic_val(cubic_state):
-    # if(check_side_equalness(cubic_state)):
-    #     return 0
-    # total_wrong_side = 0
-    # sW = ""
-    # sO = ""
-    # sG = ""
-    # sR = ""
-    # sB = ""
-    # sY = ""
     sWY, sGB, sOR = "", "", ""
     # get state for each color
     for c in cubic_state:
-        # sW += chr(ord('.')*(c!='W') + ord('W')*(c=='W'))
-        # sO += chr(ord('.')*(c!='O') + ord('O')*(c=='O'))
-        # sG += chr(ord('.')*(c!='G') + ord('G')*(c=='G'))
-        # sR += chr(ord('.')*(c!='R') + ord('R')*(c=='R'))
-        # sB += chr(ord('.')*(c!='B') + ord('B')*(c=='B'))
-        # sY += chr(ord('.')*(c!='Y') + ord('Y')*(c=='Y'))
-        sWY += chr(ord('.')*(c!='W' and c!= 'Y') + ord('W')*(c=='W') + ord('Y')*(c=='Y'))
-        sOR += chr(ord('.')*(c!='O' and c!= 'R') + ord('O')*(c=='O') + ord('R')*(c=='R'))
-        sGB += chr(ord('.')*(c!='G' and c!= 'B') + ord('G')*(c=='G') + ord('B')*(c=='B'))
+        sWY += eWY[c]
+        sOR += eOR[c]
+        sGB += eGB[c]
 
-    # hhW = hW[sW]
-    # hhO = hO[sO]
-    # hhG = hG[sG]
-    # hhR = hR[sR]
-    # hhB = hB[sB]
-    # hhY = hY[sY]
     hhWY = hWY[sWY]
     hhOR = hOR[sOR]
     hhGB = hGB[sGB]
-    # print([hhWY, hhOR, hhGB])
     return max(hhWY, hhOR, hhGB)
 
 def frontCW(cube_state):
