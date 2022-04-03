@@ -1,6 +1,10 @@
+#!/usr/bin/python3.10
 from collections import defaultdict
 from cube import Cube
-import pickle
+from pickle import load as pkload
+from time import perf_counter
+from snipped_termcolor import draw
+
 def readfile(filename):
     f = open(filename)
     data = f.read()
@@ -17,15 +21,28 @@ def readfile(filename):
     return data
 
 # load heuristic
-try:
-    # hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
-    # hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
-    # hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
-    hWO = pickle.load(open("BFS_Heuristic_WO.pickle", "rb"))
-    hGR = pickle.load(open("BFS_Heuristic_GR.pickle", "rb"))
-    hBY = pickle.load(open("BFS_Heuristic_BY.pickle", "rb"))
-except FileNotFoundError:
-    print("HEURISTIC DICT NOT FOUND")
+def load_heuristic(fileName):
+    handle0 = open(f"{fileName}_{0}.pickle", "rb")
+    handle1 = open(f"{fileName}_{1}.pickle", "rb")
+    heuristic_part1 = pkload(handle0)
+    heuristic_part2 = pkload(handle1)
+    output = heuristic_part1 | heuristic_part2 # merge 2 parts
+    
+    return output
+
+
+# hWY = pickle.load(open("BFS_Heuristic_WY.pickle", "rb"))
+# hOR = pickle.load(open("BFS_Heuristic_OR.pickle", "rb"))
+# hGB = pickle.load(open("BFS_Heuristic_GB.pickle", "rb"))
+print("Loading Heuristic...")
+start_time = perf_counter()
+hWO = load_heuristic("BFS_Heuristic_WO")
+hGR = load_heuristic("BFS_Heuristic_GR")
+hBY = load_heuristic("BFS_Heuristic_BY")
+end_time = perf_counter()
+print(f'Loading time: {end_time - start_time}')
+print("Finish Loading")
+    
 
 
 def check_side_equalness(cubic_state):
@@ -168,6 +185,16 @@ def reconstruct_path(finish_state, cameFrom: dict):
         path.append(move)
         # print(f'{move}, ', end="")
     return path[::-1] #reverse the path, and return it
+
+def get_cube_input():
+    print(f"ENCODED COLOR:\nWhite = {draw('W')}\nOrange = {draw('O')}\nGreen = {draw('G')}\nRed = {draw('R')}\nBlue = {draw('B')}\nYellow = {draw('Y')}")
+    msg = ("UP", "LEFT", "FRONT", "RIGHT", "BACK", "DOWN")
+    state = ""
+    for m in msg:
+        tstate = input(f"Type in the {m} side: ")
+        state += tstate
+    
+    return state
 
 
 def print_history(init_state, path):
