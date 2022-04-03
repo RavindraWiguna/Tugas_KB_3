@@ -29,7 +29,12 @@ def greedy_best_first_search(start_cube):
         #get node with min f value
         min_cube = queue.get()
         total_removed_node+=1
-
+        if(min_cube.h == 0):
+            print("HEY, Found the goal!")
+            path = reconstruct_path(min_cube.state, cameFrom)
+            isFound = True
+            break
+			
         #get all possible move
         for move in POS_MOVE:
             
