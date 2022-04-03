@@ -202,6 +202,6 @@ def print_history(init_state, path):
     #cut from id 1-end
     for i, move in enumerate(path[1:]):
         cube = Cube(move_func_dict[move](cube.state))
-        print(f'MOVE #{i+1}: {move}')
+        print(f'MOVE #{i+1}: {move} | estimated cost to goal: {get_heuristic_val(cube.state)}')
         cube.printState()
         input("continue")
