@@ -2,7 +2,7 @@
 from collections import Counter #to act like a std::map<str, int> on cpp
 from collections import defaultdict #dictionary but with default value on missing key
 from queue import PriorityQueue #to store node with automated queue based on f val
-import time
+from time import perf_counter
 from common_functions import *
 from cube import Cube
 
@@ -74,9 +74,9 @@ def a_star(start_cube):
     #End of While Loop
     return path, total_opened_node, total_removed_node
 
-def main():
-    # create start and goal cube
-    start_state = readfile("cube.txt")
+
+
+def solve(start_state):
     start_cube = Cube(start_state)
     print("START CUBE")
     start_cube.printState()
@@ -85,9 +85,9 @@ def main():
 
     #search!
     print("Searching Solution using A* Algorithm...")
-    start_time = time.perf_counter()
+    start_time = perf_counter()
     path, total_opened_node, total_removed_node = a_star(start_cube)
-    end_time = time.perf_counter()
+    end_time = perf_counter()
     print(f'- A star elapsed time: {end_time - start_time}')
     print(f'- Total node opened: {total_opened_node}')
     print(f'- Total node removed from queue: {total_removed_node}')
@@ -95,9 +95,29 @@ def main():
     print(f'- Path:\n{path}')
     ans = input("Do you want to see the solutions in play? [y/n] Default:y\n>>>")
     if(ans == 'n' or ans == 'N'):
-        print("Alright then, closing program...")
-        return 0
-    print_history(start_state, path)
+        print("Alright then")
+    else:
+        print_history(start_state, path)
+
+
+
+def main():
+    # create start and goal cube
+    start_state = readfile("cube.txt")
+    # solve it using a star
+    solve(start_state)
+    
+    # loop if user want to do it again
+    while(True):
+        again = input("Do you want to solve another 2x2x2 cube? [y/n] Default:n\n>>>")
+        if(again == 'y' or again == 'Y'):
+            start_state = get_cube_input()
+            solve(start_state)
+        else:
+            break
+
+
+
 
 
 if __name__ == "__main__":

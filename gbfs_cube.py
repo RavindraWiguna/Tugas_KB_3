@@ -62,8 +62,7 @@ def greedy_best_first_search(start_cube):
     # return path, total_opened_node
     return path, total_opened_node, total_removed_node
 
-def main():
-    start_state = readfile("cube.txt")
+def solve(start_state):
     start_cube = Cube(start_state)
     print("START CUBE")
     start_cube.printState()
@@ -83,8 +82,22 @@ def main():
     ans = input("Do you want to see the solutions in play? [y/n] Default:y\n>>>")
     if(ans == 'n' or ans == 'N'):
         print("Alright then, closing program...")
-        return 0
-    print_history(start_state, path)
+    else:
+        print_history(start_state, path)
+
+def main():
+    # read default scramble
+    start_state = readfile("cube.txt")
+    solve(start_state)
+
+    # loop if user want to do it again
+    while(True):
+        again = input("Do you want to solve another 2x2x2 cube? [y/n] Default:n\n>>>")
+        if(again == 'y' or again == 'Y'):
+            start_state = get_cube_input()
+            solve(start_state)
+        else:
+            break
 
 
 if __name__ == "__main__":
