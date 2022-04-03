@@ -1,9 +1,4 @@
-from snipped_termcolor import colored
-
-dcolor = {'R':'red','G':'green','Y':'yellow', 'B':'blue', 'O':'magenta', 'C':'cyan', 'W':'white'}
-
-def draw(text):
-    return colored(text, dcolor[text], attrs=['bold'])
+from snipped_termcolor import draw
 
 # START INDEX OF EACH SIDE
 UP = 0
