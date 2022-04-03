@@ -10,9 +10,9 @@ import pickle
 #GLOBAL POSSIBLE MOVE
 POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
-# color = 'W'
+# WWWWOOOOGGGGRRRRBBBBYYYY
 def bfs_gen():
-    init_cube = Cube("........GGGG....BBBB....")
+    init_cube = Cube("................BBBBYYYY")
                       
 
     heuristic_dict = {}
@@ -57,7 +57,7 @@ def bfs_gen():
     except KeyboardInterrupt:
         pass
 
-    with open('BFS_Heuristic_test.pickle', 'wb') as handle:
+    with open('BFS_Heuristic_BY.pickle', 'wb') as handle:
         pickle.dump(heuristic_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("finished")
