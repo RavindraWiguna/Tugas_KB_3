@@ -12,7 +12,7 @@ POS_MOVE = ('F', 'R', 'U', 'B', 'L', 'D', 'FC', 'RC', 'UC', 'BC', 'LC', 'DC')
 
 # WWWWOOOOGGGGRRRRBBBBYYYY
 def bfs_gen():
-    init_cube = Cube("........GGGGRRRR........")
+    init_cube = Cube("................BBBBYYYY")
                       
 
     arr_hdict = [{}, {}]
@@ -73,7 +73,7 @@ def bfs_gen():
         pass
     
     for i in range(2):
-        with open(f'BFS_Heuristic_GR_{i}.pickle', 'wb') as handle:
+        with open(f'BFS_Heuristic_BY_{i}.pickle', 'wb') as handle:
             pickle.dump(arr_hdict[i], handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("finished")
