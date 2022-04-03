@@ -57,7 +57,7 @@ def bfs_gen():
     except KeyboardInterrupt:
         pass
 
-    with open('BFS_Heuristic_GB.pickle', 'wb') as handle:
+    with open('BFS_Heuristic_test.pickle', 'wb') as handle:
         pickle.dump(heuristic_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("finished")
@@ -67,4 +67,7 @@ def bfs_gen():
 
 if __name__=="__main__":
     print("generating")
+    start_time = time.perf_counter()
     bfs_gen()
+    end_time = time.perf_counter()
+    print(f'Elapsed time: {end_time - start_time}')
